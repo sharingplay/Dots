@@ -1,9 +1,7 @@
 package figuras;
-import listas.Nodo;
 import listas.listaSimple;
  
 /**
- * 
  * @author Mario
  *clase punto
  */

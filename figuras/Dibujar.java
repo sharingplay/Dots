@@ -30,26 +30,26 @@ public class Dibujar extends JPanel {
     /**
      * Dibujar figuras, líneas, etc, en la interfaz
      */
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-       //Dibujar las líneas
-        Graphics2D g2 = (Graphics2D) g;
+    public void paintComponent(Graphics dibujo) {
+        super.paintComponent(dibujo);
+       //Renderizar figuras
+        Graphics2D dibujo2D = (Graphics2D) dibujo;
         
         //Dibujar los polígonos y asignar color dependiendo del jugador
         for (int i=0; i<figuras.getSize(); i++) {
             Figuras temporal = (Figuras)figuras.getValor(i);
-            if (temporal.getPlayer() == player1){
-                g2.setColor(Color.blue);
-                g2.fillPolygon(temporal.getPolygon().xpoints, temporal.getPolygon().ypoints, temporal.getPolygon().npoints);
+            if (temporal.getPlayer() == player1){//pinta el area de la figura de azul si es jugador 1
+                dibujo2D.setColor(Color.blue);
+                dibujo2D.fillPolygon(temporal.getPolygon().xpoints, temporal.getPolygon().ypoints, temporal.getPolygon().npoints);
             }
-            else {
-                g2.setColor(Color.red);
-                g2.fillPolygon(temporal.getPolygon().xpoints, temporal.getPolygon().ypoints, temporal.getPolygon().npoints);
+            else {//pinta el area de la figura de rojo si es jugador 2
+                dibujo2D.setColor(Color.red);
+                dibujo2D.fillPolygon(temporal.getPolygon().xpoints, temporal.getPolygon().ypoints, temporal.getPolygon().npoints);
+
             }
         }
-        //Color de la línea
-        g2.setColor(Color.black);
-        g2.setStroke(new BasicStroke(5));
+        dibujo2D.setColor(Color.black);//Color de la línea
+        dibujo2D.setStroke(new BasicStroke(6));//grosor de la linea
        /*
         * Obtiene los valores de cada punto y sus vecinos y dibuja una linea entre ellos. 
         */
@@ -58,15 +58,15 @@ public class Dibujar extends JPanel {
             for (int j=0;j<puntoTemporal.getVecinos().getSize();j++) {
                 Punto vecino = (Punto) puntoTemporal.getVecinos().getValor(j);
                
-                int ERROR = 8;
+                int AJUSTE = 8;
                
-                g2.drawLine(puntoTemporal.getX()+ERROR, puntoTemporal.getY()+ERROR, vecino.getX()+ERROR, vecino.getY()+ERROR);
+                dibujo2D.drawLine(puntoTemporal.getX()+AJUSTE, puntoTemporal.getY()+AJUSTE, vecino.getX()+AJUSTE, vecino.getY()+AJUSTE);
  
                
             }
         }
  
-        paintComponents(g);        
+        paintComponents(dibujo);        
        
     }
    

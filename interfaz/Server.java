@@ -77,8 +77,7 @@ public class Server extends javax.swing.JFrame {
         }
         updateCanvas();
     }
-    /**
-     * 
+    /** 
      * @param jugadorActual se le ingresa el jugador actual
      * @return jugadorActual se lo asigna al otro jugador para que sea su turno
      */
@@ -167,7 +166,7 @@ public class Server extends javax.swing.JFrame {
         panel.setBounds(0, 0, 600, 800);
         add(panel);
         componentes.agregar(panel);
-        revalidate();
+        validate();
         repaint();
        
     }
@@ -194,19 +193,19 @@ public class Server extends javax.swing.JFrame {
            
             Punto aux = new Punto (destino.getX(), destino.getY());
             camino.agregar(aux);
-            Figuras figura = new Figuras(camino, nodos, jugadorActual);
+            Figuras figura = new Figuras(camino,jugadorActual);
          
-            // revisa si la figura colisiona con otra
-            boolean collide = false;
+            // revisa si la figura colisiona con la figura grande
+            boolean colision = false;
             for (int i=0; i<this.figuras.getSize(); i++) {
                 Figuras temporal = (Figuras)this.figuras.getValor(i);
-                if (figura.collide(temporal) ){//si interseca se sale
-                    collide = true;
+                if (figura.colisiona(temporal)){//si interseca se sale
+                    colision = true;
                     break;
                 }
             }
  
-            if (!collide) {//si no interseca la agrega a la lista
+            if (!colision) {//si no interseca la agrega a la lista
                 this.figuras.agregar(figura);
             }
             camino.borrar(aux);
@@ -245,8 +244,6 @@ public class Server extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Server.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
- 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Server().setVisible(true);
