@@ -13,7 +13,6 @@ import listas.listaSimple;
 public class Figuras {
  
 	listaSimple listaPuntos = new listaSimple();
-	listaSimple triangulos = new listaSimple();
     Polygon poligono = new Polygon();
     int player = 0;
    
@@ -50,9 +49,9 @@ public class Figuras {
      * @return devuelve si 2 areas colisionan
      */
     public boolean colisiona (Figuras figura) {
-        Area areaUtilizada = new Area((Shape)getPolygon());//crea un area con la forma del poligono grande
-        Area area = new Area((Shape)figura.getPolygon());//crea un area con el poligono ingresado
-        area.intersect(areaUtilizada);//verifica si una figura se traza dentro de otra
-        return !(area.isEmpty());
+        Area areaUtilizada = new Area(getPolygon());//crea un area con la forma del poligono grande
+        Area area = new Area(figura.getPolygon());//crea un area con el poligono ingresado
+        area.intersect(areaUtilizada);//crea un area con la interseccion de 2 areas
+        return !(area.isEmpty());//verifica si el area intersecada esta vacia o no
     }
 }

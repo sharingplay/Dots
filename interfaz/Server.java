@@ -15,15 +15,15 @@ public class Server extends javax.swing.JFrame {
 	 */
     Punto desde;//punto de partida
     Punto hacia;//punto de llegada
-    listaSimple nodos = new listaSimple();//lista de nodos que recorre
+    listaSimple puntos = new listaSimple();//lista de puntos que recorre
     listaSimple componentes = new listaSimple();//lista de componentes para dibujar
     listaSimple figuras = new listaSimple();//lista de figuras que existen en ese momento
     
     public final int player1 = 1;//constantes para indicar el jugador
     public final int player2 = 2;
-    int jugadorActual = 1;
+    int jugadorActual = 0;
     Calculos operaciones = new Calculos();
-   
+    //constantes
     public final int ESPACIO = 50;//distancia en pixeles entre puntos
     public final int ALTO = 450;//alto de la ventana en pixeles
     public final int ANCHO = 600;//ancho de la ventana en pixeles
@@ -36,7 +36,7 @@ public class Server extends javax.swing.JFrame {
         for (int i=220; i<ANCHO; i = i + ESPACIO ) {//creacion de las filas
             for (int j=50; j<ALTO; j = j + ESPACIO ) {//creacion de las columnas
                 Punto puntoTemporal = new Punto(i, j);
-                nodos.agregar(puntoTemporal);
+                puntos.agregar(puntoTemporal);
             }
         }
         /**
@@ -139,9 +139,9 @@ public class Server extends javax.swing.JFrame {
         add(datosJ2);
         componentes.agregar(datosJ2);
         
-        for (int i=0;i<nodos.getSize();i++) {
+        for (int i=0;i<puntos.getSize();i++) {
         	//dibujado de los puntos
-            Punto puntoTemporal = (Punto) nodos.getValor(i);
+            Punto puntoTemporal = (Punto) puntos.getValor(i);
             JButton punto = new JButton(new ImageIcon("images/circulo.png"));
             punto.setBounds(puntoTemporal.getX()-1, puntoTemporal.getY()+1, 15, 15);
             add(punto);
@@ -162,7 +162,7 @@ public class Server extends javax.swing.JFrame {
             componentes.agregar(puntoShadeLabel);
         }
         //
-        Dibujar panel = new Dibujar(this.nodos, this.figuras);
+        Dibujar panel = new Dibujar(this.puntos, this.figuras);
         panel.setBounds(0, 0, 600, 800);
         add(panel);
         componentes.agregar(panel);

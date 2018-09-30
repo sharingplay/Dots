@@ -15,14 +15,11 @@ import listas.listaSimple;
   */
 public class Dibujar extends JPanel {
  
-    listaSimple nodo = new listaSimple();
+    listaSimple puntos = new listaSimple();
     listaSimple figuras = new listaSimple();
    
-    public final int player1 = 1;
-    public final int player2 = 2;
-   
-    public Dibujar(listaSimple nodo, listaSimple figuras) {
-        this.nodo = nodo;
+    public Dibujar(listaSimple puntos, listaSimple figuras) {
+        this.puntos = puntos;
         this.figuras = figuras;
     }
    
@@ -38,7 +35,7 @@ public class Dibujar extends JPanel {
         //Dibujar los polígonos y asignar color dependiendo del jugador
         for (int i=0; i<figuras.getSize(); i++) {
             Figuras temporal = (Figuras)figuras.getValor(i);
-            if (temporal.getPlayer() == player1){//pinta el area de la figura de azul si es jugador 1
+            if (temporal.getPlayer() == 1){//pinta el area de la figura de azul si es jugador 1
                 dibujo2D.setColor(Color.blue);
                 dibujo2D.fillPolygon(temporal.getPolygon().xpoints, temporal.getPolygon().ypoints, temporal.getPolygon().npoints);
             }
@@ -50,24 +47,19 @@ public class Dibujar extends JPanel {
         }
         dibujo2D.setColor(Color.black);//Color de la línea
         dibujo2D.setStroke(new BasicStroke(6));//grosor de la linea
-       /*
+       /**
         * Obtiene los valores de cada punto y sus vecinos y dibuja una linea entre ellos. 
         */
-        for (int i=0;i<nodo.getSize();i++) {
-            Punto puntoTemporal = (Punto) nodo.getValor(i);
+        for (int i=0;i<puntos.getSize();i++) {
+            Punto puntoTemporal = (Punto) puntos.getValor(i);
             for (int j=0;j<puntoTemporal.getVecinos().getSize();j++) {
-                Punto vecino = (Punto) puntoTemporal.getVecinos().getValor(j);
-               
-                int AJUSTE = 8;
+                Punto vecino = (Punto) puntoTemporal.getVecinos().getValor(j);//saca cada vecino
+                int AJUSTE = 8;//ajuste de las lineas para que coincidan con los puntos
                
                 dibujo2D.drawLine(puntoTemporal.getX()+AJUSTE, puntoTemporal.getY()+AJUSTE, vecino.getX()+AJUSTE, vecino.getY()+AJUSTE);
- 
-               
+
             }
         }
- 
-        paintComponents(dibujo);        
-       
+        paintComponents(dibujo2D);        
     }
-   
 }

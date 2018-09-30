@@ -44,6 +44,11 @@ public class Punto {
     @Override
     public boolean equals (Object valor) {//compara el valor de un punto con otro
         Punto punto = (Punto) valor;
-        return (getX()==punto.getX() && getY()==punto.getY());
+        if (getX()==punto.getX() && getY()==punto.getY()) {
+        	return true;
+        }
+        else {
+        	return false;
+        } 
     }
 }

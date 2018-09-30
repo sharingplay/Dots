@@ -15,7 +15,7 @@ public class listaSimple {
         else {
             Nodo nodoTemporal = head;
             head = aux;
-            head.next = nodoTemporal;
+            head.setNext(nodoTemporal);
             size++;
         }
     }
@@ -25,17 +25,17 @@ public class listaSimple {
         }
         else {
             size --;
-            if (valor == (head.valor)) {
-                head = head.next;
+            if (valor == head.getValor()) {
+                head = head.getNext();
             }
             else {
                 Nodo temporal = head;
                 while (temporal != null) {
  
-                    if (temporal.next.valor.equals(valor)) { // temporal.data == data does not work very well
-                        temporal.next = temporal.next.next;
+                    if (temporal.getNext().getValor().equals(valor)) {
+                        temporal.setNext(temporal.getNext().getNext()) ;
                     }
-                    temporal = temporal.next;
+                    temporal = temporal.getNext();
                 }
             }
         }
@@ -44,44 +44,25 @@ public class listaSimple {
     public Object getValor (Object valor) {
         Nodo temporal = head;
         while (temporal != null) {
-            if (temporal.valor.equals(valor)) {
-                return temporal.valor;
+            if (temporal.getValor().equals(valor)) {
+                return temporal.getValor();
             }
-            temporal = temporal.next;
+            temporal = temporal.getNext();
         }
         return null;
     }
-   
     public Object getValor (int indice) {
         Nodo temporal = head;
         int contador = 0;
         while (contador != indice) {
-            temporal = temporal.next;
+            temporal = temporal.getNext();
             contador ++;
             if (temporal == null) {
                 return null;
             }
         }
-        return temporal.valor;
+        return temporal.getValor();
     }
-
-  
-    @Override
-    public String toString () {
-        Nodo temp = head;
-        String result = "";
-       
-        while (temp != null) {
-            result += "[" + temp.valor.toString() + "]";
-            temp = temp.next;
-            if (temp != null) {
-                result += (" ->");
-            }
-        }
-       
-        return result;
-    }
-
 	public int getSize() {
 		return this.size;
 	}

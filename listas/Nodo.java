@@ -12,5 +12,21 @@ public class Nodo {
         this.next = null;
         this.valor = valor;
     }
-   
+
+	public Nodo getNext() {
+		return next;
+	}
+
+	public void setNext(Nodo next) {
+		this.next = next;
+	}
+
+	public Object getValor() {
+		return valor;
+	}
+
+	public void setValor(Object valor) {
+		this.valor = valor;
+	}
+    
 }
