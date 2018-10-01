@@ -10,8 +10,8 @@ public class Punto {
     private int x;
     private int y;
     private listaSimple vecinos = new listaSimple();
-   
-    public int getX() {
+
+	public int getX() {
         return this.x;
     }
  

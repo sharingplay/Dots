@@ -8,7 +8,7 @@ import figuras.Punto;
 import listas.listaSimple;
 import figuras.Dibujar;
 import calculos.Calculos;
- 
+
 public class Logica extends javax.swing.JFrame {
 	/**
 	 * Clase servidor que contiene la logica del juego
@@ -194,12 +194,11 @@ public class Logica extends javax.swing.JFrame {
      * @param destino
      */
     private void buscarFigura (listaSimple camino, Punto actual, Punto destino) {
-        if (actual.equals(destino)) {
+        if (actual.equals(destino)) {//si se completa la figura
            
             Punto aux = new Punto (destino.getX(), destino.getY());
             camino.agregar(aux);
             Figuras figura = new Figuras(camino,jugadorActual);
-         
             // revisa si la figura colisiona con la figura grande
             boolean colision = false;
             for (int i=0; i<this.figuras.getSize(); i++) {
@@ -219,8 +218,8 @@ public class Logica extends javax.swing.JFrame {
           * revisa si 2 puntos son iguales entre los vecinos
           */
         for (int i = 0; i < actual.getVecinos().getSize(); i++) {
-            Punto siguiente = (Punto) actual.getVecinos().getValor(i);//revisa todos los vecinos del punto
-            if (camino.getValor(siguiente) == null) {//si los puntos no son iguales los agrega al recorrido de la figura
+            Punto siguiente = (Punto) actual.getVecinos().getValor(i);//revisa todos los vecinos del punto inicial
+            if (camino.getValor(siguiente) == null) {//verifica si el camino de la figura no
                 Punto aux = new Punto(actual.getX(), actual.getY());
                 camino.agregar(aux);
                 buscarFigura(camino, siguiente, destino);
